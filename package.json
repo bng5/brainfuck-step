@@ -1,0 +1,26 @@
+{
+  "name": "bfstep",
+  "version": "0.0.1",
+  "description": "brainfuck interpreter for bfedit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bng5/bfstep.git"
+  },
+  "keywords": [
+    "brainfuck",
+    "interpreter"
+  ],
+  "author": {
+    "name": "Pablo Bangueses",
+    "email": "pablo@bng5.net"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bng5/bfstep/issues"
+  },
+  "homepage": "https://github.com/bng5/bfstep#readme"
+}
