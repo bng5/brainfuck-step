@@ -7,6 +7,7 @@ function Brainfuck() {
   this.source = '';
   this.sourcePos = 0;
   this.delay = 100;
+  this._delay = 100;
   this.bufferSize = 30000;
   this.reset();
 }
@@ -17,6 +18,15 @@ Brainfuck.prototype.STATE_STOPPED = 0;
 Brainfuck.prototype.STATE_RUNNING = 1;
 Brainfuck.prototype.STATE_PAUSED  = 2;
 
+var Person = function() {
+};
+
+Object.defineProperty(Brainfuck.prototype, 'delay', {
+  get: function() {
+    return this._delay;
+  }
+});
+
 Brainfuck.prototype._state = function(state) {
   this.state = state;
   this.emit('statechange', state);
@@ -26,6 +36,9 @@ Brainfuck.prototype._state = function(state) {
  *
  */
 Brainfuck.prototype.stop = function(error_str) {
+  if(this._state === this.STATE_STOPPED) {
+    return;
+  }
   this._state(this.STATE_STOPPED);
   this.emit('end', {message: error_str}, 'output');
 };
@@ -45,7 +58,7 @@ Brainfuck.prototype.reset = function() {
 Brainfuck.prototype.run = function() {
   this.reset();
   this._state(this.STATE_RUNNING);
-  this.step();
+  this._step();
 };
 
 /**
@@ -65,7 +78,7 @@ Brainfuck.prototype.toggleRun = function() {
       break;
     case this.STATE_PAUSED:
       this._state(this.STATE_RUNNING);
-      this.step();
+      this._step();
       break;
     case this.STATE_STOPPED:
       this.run();
@@ -73,10 +86,16 @@ Brainfuck.prototype.toggleRun = function() {
   }
 };
 
+Brainfuck.prototype.next = function() {
+  if(this.state === this.STATE_PAUSED) {
+    this._step();
+  }
+}
+
 /**
  *
  */
-Brainfuck.prototype.step = function() {
+Brainfuck.prototype._step = function() {
   if(this.sourcePos >= this.source.length) {
     this.emit('end', null);
     return;
@@ -101,7 +120,7 @@ Brainfuck.prototype.step = function() {
   this.emit('step', (typeof ret == 'string' ? ret : null));
   if(this.state === this.STATE_RUNNING) {
     setTimeout(function(bf) {
-      bf.step();
+      bf._step();
     }, this.delay, this);
   }
 };
