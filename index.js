@@ -18,13 +18,13 @@ Brainfuck.prototype.STATE_STOPPED = 0;
 Brainfuck.prototype.STATE_RUNNING = 1;
 Brainfuck.prototype.STATE_PAUSED  = 2;
 
-var Person = function() {
-};
-
 Object.defineProperty(Brainfuck.prototype, 'delay', {
   get: function() {
     return this._delay;
-  }
+  },
+  set: function(delay) {
+    this._delay = delay;
+  },
 });
 
 Brainfuck.prototype._state = function(state) {
