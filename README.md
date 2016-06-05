@@ -13,9 +13,8 @@
 
 ##### Methods:
 
-- __stop__ -
-- __reset__ -
 - __run__ -
+- __stop__ -
 - __pause__ -
 - __toggleRun__ -
 - __step__ -
@@ -25,6 +24,7 @@
 - __end__
 - __step__
 - __statechange__
+- __
 
 #### License (ISC)
 
