@@ -7,11 +7,11 @@
 
 ##### Properties:
 
-- __source__             -
-- __instructionPointer__ - _int_
-- __delay__              - _int_ Time, in microseconds, between each step.
-- __arraySize__          - _int_ Number of cells in the array.
-- __dataPointer__ -
+- __source__             - _string_ Brainfuck code.
+- __instructionPointer__ - _number_ Current command position.
+- __delay__              - _number_ Time, in microseconds, between each step.
+- __arraySize__          - _number_ Number of cells in the array.
+- __dataPointer__        - _number_ Cell at the pointer.
 
 ##### Methods:
 
