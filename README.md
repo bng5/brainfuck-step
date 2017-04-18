@@ -1,15 +1,17 @@
 ##### Constants
 
-- STATE_STOPPED = 0;
-- STATE_RUNNING = 1;
-- STATE_PAUSED  = 2;
+- STATE_STOPPED = 0
+- STATE_RUNNING = 1
+- STATE_PAUSED  = 2
+- STATE_WAITING = 3
 
 ##### Properties:
 
-- __source__ -
-- __sourcePos__ -
-- __delay__ -
-- __bufferSize__ -
+- __source__             -
+- __instructionPointer__ - _int_
+- __delay__              - _int_ Time, in microseconds, between each step.
+- __arraySize__          - _int_ Number of cells in the array.
+- __dataPointer__ -
 
 ##### Methods:
 
