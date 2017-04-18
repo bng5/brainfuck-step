@@ -12,6 +12,7 @@
 - __delay__              - _number_ Time, in microseconds, between each step.
 - __arraySize__          - _number_ Number of cells in the array.
 - __dataPointer__        - _number_ Cell at the pointer.
+- __
 
 ##### Methods:
 
@@ -28,6 +29,25 @@
 - __statechange__
 - __
 
+```
+EventEmitter {
+  run: [Function],
+  stop: [Function],
+  pause: [Function],
+  step: [Function],
+  toggleRun: [Function],
+  state: [Getter],
+  arraySize: [Getter/Setter],
+  cursor: [Getter],
+  source: [Getter/Setter],
+  tape: [Getter],
+  position: [Getter],
+  delay: [Getter/Setter],
+  input: [Getter],
+  _events: { step: [Function] },
+  _eventsCount: 1
+}
+```
 #### License (ISC)
 
 Copyright (c) 2016, Pablo Bangueses <pablo@bng5.net>
