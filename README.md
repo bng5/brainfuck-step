@@ -1,11 +1,11 @@
-# bfstep
+# brainfuck-step
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ``` bash
-$ npm install bfstep --save
+$ npm install brainfuck-step --save
 ```
 
 ## Documentation
@@ -31,14 +31,13 @@ __create ( [ _number_ arraySize = 30000] )__ Creates a new brainfuck interpreter
 - __instructionPointer__ - (_number_) Current command position.
 - __source__             - (_string_) Brainfuck code.
 
-
 #### Methods:
 
 __run()__       - Start or resume program execution.
 
 __pause()__     - Halt program execution.
 
-__next()__      -
+__next()__      - Executes the next instruction. Only when paused.
 
 __stop()__      - Stop execution (Break).
 
@@ -66,9 +65,9 @@ Arguments:
 #### Example
 
 ``` js
-var bfstep = require('bfstep')
+var brainfuck = require('brainfuck-step')
 
-var bf = bfstep.create(10)
+var bf = brainfuck.create(10)
 
 bf.on('step', function (output) {
   console.log('dataPointer:    %d', this.dataPointer)
@@ -94,25 +93,6 @@ bf.source = '++++++++[>++++++++<-]>.'// print @ (8*8)
 bf.run()
 ```
 
-```
-EventEmitter {
-  run: [Function],
-  stop: [Function],
-  pause: [Function],
-  step: [Function],
-  toggleRun: [Function],
-  state: [Getter],
-  arraySize: [Getter/Setter],
-  cursor: [Getter],
-  source: [Getter/Setter],
-  tape: [Getter],
-  position: [Getter],
-  delay: [Getter/Setter],
-  input: [Getter],
-  _events: { step: [Function] },
-  _eventsCount: 1
-}
-```
 #### License (ISC)
 
 Copyright (c) 2016, Pablo Bangueses <pablo@bng5.net>
