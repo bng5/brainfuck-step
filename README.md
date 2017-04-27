@@ -37,6 +37,7 @@ __create ( [ _number_ arraySize = 30000] )__ Creates a new brainfuck interpreter
 __run()__       - Start or resume program execution.
 
 __pause()__     - Halt program execution.
+<<<<<<< HEAD
 
 __next()__      -
 
@@ -48,6 +49,19 @@ __toggleRun()__ - Pause or resume program execution.
 
 ##### end
 
+=======
+
+__next()__      -
+
+__stop()__      - Stop execution (Break).
+
+__toggleRun()__ - Pause or resume program execution.
+
+#### Events:
+
+##### end
+
+>>>>>>> dcb4538e26b491458ab9c2a9a665cb2ba46465f4
 Emitted when the program has ended.
 
 Arguments:
