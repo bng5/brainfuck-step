@@ -1,14 +1,15 @@
 {
-  "name": "bfstep",
+  "name": "brainfuck-step",
   "version": "0.0.1",
   "description": "brainfuck interpreter for bfedit.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\" && exit 1"
+    "test": "jasmine",
+    "standard": "standard"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bng5/bfstep.git"
+    "url": "https://github.com/bng5/brainfuck-step.git"
   },
   "keywords": [
     "brainfuck",
@@ -20,7 +21,14 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bng5/bfstep/issues"
+    "url": "https://github.com/bng5/brainfuck-step/issues"
   },
-  "homepage": "https://github.com/bng5/bfstep#readme"
+  "homepage": "https://github.com/bng5/brainfuck-step#readme",
+  "dependencies": {
+    "node-constants": "0.0.2"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.3",
+    "standard": "^10.0.2"
+  }
 }
