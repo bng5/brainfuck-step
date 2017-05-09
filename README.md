@@ -1,5 +1,7 @@
 # brainfuck-step
 
+A brainfuck interpreter that emits events on every step.
+
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
@@ -8,61 +10,91 @@
 $ npm install brainfuck-step --save
 ```
 
-## Documentation
+## Module Constants
 
-### Module Methods:
+- brainfuckstep.STATE_STOPPED = 0
+- brainfuckstep.STATE_RUNNING = 1
+- brainfuckstep.STATE_PAUSED  = 2
+- brainfuckstep.STATE_WAITING = 3
 
-__create ( [ _number_ arraySize = 30000] )__ Creates a new brainfuck interpreter instance.
+## Constructor
 
-### Module Constants
+_EventEmitter_ __brainfuckstep.create ( [arraySize] )__
 
-- STATE_STOPPED = 0
-- STATE_RUNNING = 1
-- STATE_PAUSED  = 2
-- STATE_WAITING = 3
+ - arraySize
+   - type: number
+   - default: 30000
 
-### Interpreter
+```js
+var brainfuckstep = require('brainfuck-step')
 
-#### Properties:
+var interpreter = brainfuckstep.create()
+```
 
-- __arraySize__          - (_number_) Number of cells in the array.
-- __dataPointer__        - (_number_) Cell at the pointer.
+### Properties:
+
+- __dataPointer__        - Read only (_number_) Current cell at the pointer.
 - __delay__              - (_number_) Time, in microseconds, between each step.
-- __instructionPointer__ - (_number_) Current command position.
+- __programPointer__ - Read only (_number_) Current position command at the source.
 - __source__             - (_string_) Brainfuck code.
+- __tape__               - Read only (_Uint8Array_) Array of memory cells.
 
-#### Methods:
+### Methods:
 
-__run()__       - Start or resume program execution.
+#### run
 
-__pause()__     - Halt program execution.
+Start or resume program execution.
 
-__next()__      - Executes the next instruction. Only when paused.
+__interpreter.run()__
 
-__stop()__      - Stop execution (Break).
+#### pause
 
-__toggleRun()__ - Pause or resume program execution.
+Halt program execution.
 
-#### Events:
+__interpreter.pause()__
 
-##### end
+#### next
 
-Emitted when the program has ended.
+Executes the next instruction. Only when paused.
 
-Arguments:
-1. ( *null* | *Error* ) If the first argument is not *null* and is an instance of *Error*, the program could not end successfully.
+__interpreter.next()__
+
+#### stop
+
+Stop execution (Break).
+
+__interpreter.stop()__
+
+#### toggleRun
+
+Pause or resume program execution.
+
+__interpreter.toggleRun()__
+
+### Events:
+
+#### end
+
+The program has ended.
+
+ - Arguments:
+   1. ( *null* | *Error* ) If the first argument is not *null* and is an instance of *Error*, the program could not end successfully.
  
-##### statechange
+#### statechange
 
 The state of the interpreter has changed.
 
-Arguments:
- - ( *number* ) The interpreter's new running status. Any of the module's STATE_* constants.
+ - Arguments:
+   1. ( *number* ) The interpreter's new running status. Any of the module's STATE_* constants.
 
-##### step
+#### step
 
+An instruction has been processed.
 
-#### Example
+ - Arguments
+   1. ( *null* | *string* ) The output character signified by the cell at the pointer if the instruction is to print. *null* otherwise.
+
+### Example
 
 ``` js
 var brainfuck = require('brainfuck-step')

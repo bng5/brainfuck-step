@@ -26,13 +26,13 @@ function printInfo(obj) {
 var bf = bfstep.create(0, 100);
 console.log(bfstep);
 console.log(bf);
-bf.on('end', function(a,b,c) {
+bf.on('end', function (err) {
   printInfo(this);
-  console.log('end', a,b,c);
+  console.log('end', err);
 });
-bf.on('step', function(output) {
+bf.on('step', function (output) {
   printInfo(this);
-  var charPos = (this.programPointer - 1);
+  var charPos = this.programPointer
   console.log(this.tape.slice(0, 10).join(' | '));
   console.log([this.source.substring(0, charPos), '\x1b[7m', this.source.substr(charPos, 1), '\x1b[0m', this.source.substring(charPos+1)].join(''));
   console.log('step', output);
