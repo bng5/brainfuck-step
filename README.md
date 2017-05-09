@@ -1,6 +1,8 @@
 # brainfuck-step
 
-A brainfuck interpreter that emits events on every step.
+Base brainfuck interpreter for debuggers.
+
+Unlike other interpreters, which evaluate the whole code and return an output, this one emits an event for each instruction.
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -19,6 +21,8 @@ $ npm install brainfuck-step --save
 
 ## Constructor
 
+Returns a new brainfuck interpreter instance.
+
 _EventEmitter_ __brainfuckstep.create ( [arraySize] )__
 
  - arraySize
@@ -35,41 +39,31 @@ var interpreter = brainfuckstep.create()
 
 - __dataPointer__        - Read only (_number_) Current cell at the pointer.
 - __delay__              - (_number_) Time, in microseconds, between each step.
-- __programPointer__ - Read only (_number_) Current position command at the source.
+- __programPointer__ - Read only (_number_) Current position at the source. Source position is zero-based: the first character is in position 0.
 - __source__             - (_string_) Brainfuck code.
 - __tape__               - Read only (_Uint8Array_) Array of memory cells.
 
 ### Methods:
 
-#### run
+#### run()
 
 Start or resume program execution.
 
-__interpreter.run()__
-
-#### pause
+#### pause()
 
 Halt program execution.
 
-__interpreter.pause()__
-
-#### next
+#### next()
 
 Executes the next instruction. Only when paused.
 
-__interpreter.next()__
-
-#### stop
+#### stop()
 
 Stop execution (Break).
 
-__interpreter.stop()__
-
-#### toggleRun
+#### toggleRun()
 
 Pause or resume program execution.
-
-__interpreter.toggleRun()__
 
 ### Events:
 
@@ -79,7 +73,7 @@ The program has ended.
 
  - Arguments:
    1. ( *null* | *Error* ) If the first argument is not *null* and is an instance of *Error*, the program could not end successfully.
- 
+
 #### statechange
 
 The state of the interpreter has changed.
@@ -94,7 +88,7 @@ An instruction has been processed.
  - Arguments
    1. ( *null* | *string* ) The output character signified by the cell at the pointer if the instruction is to print. *null* otherwise.
 
-### Example
+#### Example
 
 ``` js
 var brainfuck = require('brainfuck-step')
