@@ -1,6 +1,5 @@
 node_modules/
 bf/
-bin/
 demos/
 spec/
 npm-debug.log
