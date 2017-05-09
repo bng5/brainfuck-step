@@ -99,8 +99,7 @@ bf.on('step', function (output) {
   console.log('dataPointer:    %d', this.dataPointer)
   console.log('programPointer: %d', this.programPointer)
   console.log(this.tape.join(' | '))
-  var charPos = (this.programPointer - 1)
-  console.log([this.source.substring(0, charPos), '\x1b[7m', this.source.substr(charPos, 1), '\x1b[0m', this.source.substring(charPos + 1)].join(''))
+  console.log([this.source.substring(0, this.programPointer), '\x1b[7m', this.source.substr(this.programPointer, 1), '\x1b[0m', this.source.substring(this.programPointer + 1)].join(''))
   console.log('Output: %s\n', output)
 })
 
@@ -109,10 +108,12 @@ bf.on('statechange', function (newState) {
 })
 
 bf.on('end', function (err, b) {
+  console.log('Program ended')
   if (err) {
     console.error('ERROR: %s', err.message)
   }
-  console.log('Program ended')
+  console.log('dataPointer:    %d', this.dataPointer)
+  console.log('programPointer: %d', this.programPointer)
 })
 
 bf.source = '++++++++[>++++++++<-]>.'// print @ (8*8)
