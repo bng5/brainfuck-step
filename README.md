@@ -2,8 +2,9 @@
 
 Base brainfuck interpreter for debuggers.
 
-Unlike other interpreters, which evaluate the whole code and return an output, this one emits an event for each instruction.
+Unlike other interpreters, which evaluate the whole code and return an output, *brainfuck-step* emits an event for each instruction.
 
+[![Build Status](https://travis-ci.org/bng5/brainfuck-step.svg?branch=master)](https://travis-ci.org/bng5/brainfuck-step)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
@@ -72,7 +73,7 @@ Pause or resume program execution.
 The program has ended.
 
  - Arguments:
-   1. ( *null* | *Error* ) If the first argument is not *null* and is an instance of *Error*, the program could not end successfully.
+   1. ( *null* | *Error* ) This argument is *null* if the program has ended successfully. Otherwise it is an instance of *Error*.
 
 #### statechange
 
@@ -90,7 +91,7 @@ An instruction has been processed.
 
 #### Example
 
-``` js
+```js
 var brainfuck = require('brainfuck-step')
 
 var bf = brainfuck.create(10)
@@ -99,15 +100,23 @@ bf.on('step', function (output) {
   console.log('dataPointer:    %d', this.dataPointer)
   console.log('programPointer: %d', this.programPointer)
   console.log(this.tape.join(' | '))
-  console.log([this.source.substring(0, this.programPointer), '\x1b[7m', this.source.substr(this.programPointer, 1), '\x1b[0m', this.source.substring(this.programPointer + 1)].join(''))
-  console.log('Output: %s\n', output)
+  console.log([
+    this.source.substring(0, this.programPointer),
+    '\x1b[7m',
+    this.source.substr(this.programPointer, 1),
+    '\x1b[0m',
+    this.source.substring(this.programPointer + 1)
+  ].join(''))
+  if (output) {
+    console.log('Output: %s\n', output)
+  }
 })
 
 bf.on('statechange', function (newState) {
   console.log('The interpreter state has changed to %d', newState)
 })
 
-bf.on('end', function (err, b) {
+bf.on('end', function (err) {
   console.log('Program ended')
   if (err) {
     console.error('ERROR: %s', err.message)
