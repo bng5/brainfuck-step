@@ -1,7 +1,7 @@
 /* eslint-env jasmine */
+var bfstep = require('../index')
 
 describe('must end with an error when', function () {
-  var bfstep = require('../index')
   var interpreter
 
   beforeEach(function () {
@@ -18,7 +18,7 @@ describe('must end with an error when', function () {
     })
     interpreter.run()
   })
-  
+
   it('moves beyond the last cell', function (done) {
     interpreter.source = '+[>+]'
     interpreter.on('end', function (err) {
@@ -28,7 +28,7 @@ describe('must end with an error when', function () {
     })
     interpreter.run()
   })
-  
+
   it('has unbalanced brackets', function (done) {
     interpreter.source = '++[-]]'
     interpreter.on('end', function (err) {
@@ -38,7 +38,7 @@ describe('must end with an error when', function () {
     })
     interpreter.run()
   })
-  
+
   it('has unclosed brackets', function (done) {
     interpreter.source = '++['
     interpreter.on('end', function (err) {
