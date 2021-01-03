@@ -4,7 +4,7 @@ Base brainfuck interpreter for debuggers.
 
 Unlike other interpreters, which evaluate the whole code and return an output, *brainfuck-step* emits an event for each instruction.
 
-[![Build Status](https://travis-ci.org/bng5/brainfuck-step.svg?branch=master)](https://travis-ci.org/bng5/brainfuck-step)
+[![Build Status](https://travis-ci.com/bng5/brainfuck-step.svg?branch=master)](https://travis-ci.com/bng5/brainfuck-step)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
